@@ -1,9 +1,9 @@
 import * as S from './styles'
-
-import { Produto } from '../../App'
-
 import cesta from '../../assets/cesta.png'
+import { Produto } from '../../types' // Importar do arquivo types.ts
 import { paraReal } from '../Produto'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 type Props = {
   itensNoCarrinho: Produto[]
@@ -11,10 +11,7 @@ type Props = {
 }
 
 const Header = ({ itensNoCarrinho, favoritos }: Props) => {
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
-    acc += item.preco
-    return acc
-  }, 0)
+  const valorTotal = itensNoCarrinho.reduce((acc, item) => acc + item.preco, 0)
 
   return (
     <S.Header>
